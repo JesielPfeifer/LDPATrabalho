@@ -1,7 +1,7 @@
 import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
-from code.Const import WIN_WIDTH, WIN_HEIGHT
+from code.Const import WIN_WIDTH, WIN_HEIGHT, COLOR_ORANGE, MENU_OPTION
 
 
 class Menu:
@@ -16,8 +16,15 @@ class Menu:
         pygame.mixer_music.set_volume(0.1)
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
-            self.menu_text(50, "Mountain", (255, 128, 0), ((WIN_WIDTH / 2), 70))
+            self.menu_text(50, "Mountain", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
+            self.menu_text(50, "Shooter", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
             pygame.display.flip()
+
+            for i in range(len(MENU_OPTION)):
+                pass
+                
+
+
 
     def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lacida Sans Typewriter", size=text_size)
