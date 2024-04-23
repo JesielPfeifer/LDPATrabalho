@@ -7,6 +7,7 @@ from pygame.font import Font
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.Const import COLOR_WHITE, MENU_OPTION, EVENT_ENEMY
+from code.EntityMediator import EntityMediator
 
 
 class Level:
@@ -28,10 +29,18 @@ class Level:
         clock = pygame.time.Clock()
         while True:
             clock.tick(60)
+            # Desenha na tela as entidades
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
-                self.level_text(20, f'FPS: {clock.get_fps() :.0f}', COLOR_WHITE, (10, 10))
                 ent.move()
+            # Desenha o FPS na tela
+            self.level_text(20, f'FPS: {clock.get_fps() :.0f}', COLOR_WHITE, (10, 10))
+            self.level_text(20, f'EntityList: {len(self.entity_list)}', COLOR_WHITE, (10, 25))
+            # Atualiza na tela o FPS
+            pygame.display.flip()
+            # Verificar relacionamento de entidades
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            # Confere eventos recebidos na fila
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -39,7 +48,6 @@ class Level:
                 if event.type == EVENT_ENEMY:
                     choice = random.choice(('Enemy1', 'Enemy2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
-            pygame.display.flip()
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lacida Sans Typewriter", size=text_size)
