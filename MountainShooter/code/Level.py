@@ -40,6 +40,7 @@ class Level:
             pygame.display.flip()
             # Verificar relacionamento de entidades
             EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
             # Confere eventos recebidos na fila
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
