@@ -74,7 +74,7 @@ class Score:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                if event.type == KEYDOWN
+                if event.type == KEYDOWN:
                     if event.type == K_ESCAPE:
                         return
             pygame.display.flip()
