@@ -61,6 +61,8 @@ class EntityMediator:
         for i in range(len(entity_list)):
             entity1 = entity_list[i]
             EntityMediator.__verify_collision_window(entity1)
+            # faz validação se as entidades que estão sendo testadas são diferentes e não se repetem na validaçõo
+            # Por isso possui o i+1, para que sempre seja 1-0 ... e quando por todos os novos, o 1 começa no 1-1
             for j in range(i + 1, len(entity_list)):
                 entity2 = entity_list[j]
                 EntityMediator.__verify_collision_entity(entity1, entity2)

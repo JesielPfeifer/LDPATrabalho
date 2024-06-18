@@ -18,7 +18,7 @@ class Level:
         self.window: Surface = window
         self.name = name
         self.mode = menu_option  # Opção do Menu
-        self.timeout = 5000
+        self.timeout = 20000
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity(self.name + 'Bg'))
         '''
